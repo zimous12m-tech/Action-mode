@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Meu Plano de Ação v4 — Ciclos, Etapas, Tarefas e Pesos</title>
+    <style>
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary: #059669;
+    --secondary-hover: #047857;
+    --amber: #d97706;
+    --purple: #7c3aed;
+    --danger: #dc2626;
+    --border-color: #cbd5e1;
+    --input-bg: #f8fafc;
+    --accent-before: #eff6ff;
+    --accent-before-border: #93c5fd;
+    --accent-after: #ecfdf5;
+    --accent-after-border: #6ee7b7;
+    --radius: 16px;
+    --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 4px 10px -6px rgba(15, 23, 42, 0.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    line-height: 1.65;
+    font-size: 17px;
+    min-height: 100vh;
+}
+
+.container { max-width: 960px; margin: 0 auto; padding: 0 18px; }
+
+.top-bar {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #ffffff;
+    padding: 32px 0;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
+}
+
+.header-content { display: flex; flex-direction: column; gap: 20px; }
+
+.brand-tag {
+    display: inline-block;
+    background: rgba(59, 130, 246, 0.25);
+    color: #93c5fd;
+    border: 1px solid rgba(147, 197, 253, 0.3);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+}
+
+h1 { font-size: 2rem; color: #ffffff; font-weight: 800; letter-spacing: -0.5px; line-height: 1.2; }
+.subtitle { color: #cbd5e1; font-size: 1.05rem; margin-top: 8px; max-width: 760px; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding-top: 6px; }
+
+.btn, select.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 11px 16px; border-radius: 10px; font-size: 0.94rem; font-weight: 600;
+    cursor: pointer; border: 1px solid transparent; transition: all 0.2s ease;
+    text-decoration: none; font-family: inherit; min-height: 44px;
+}
+
+.btn-primary { background-color: var(--primary); color: #ffffff; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); }
+.btn-primary:hover { background-color: var(--primary-hover); }
+.btn-secondary { background-color: var(--secondary); color: #ffffff; }
+.btn-secondary:hover { background-color: var(--secondary-hover); }
+.btn-amber { background-color: var(--amber); color: #ffffff; }
+.btn-amber:hover { background-color: #b45309; }
+.btn-glass { background-color: rgba(255, 255, 255, 0.12); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.25); }
+.btn-glass:hover { background-color: rgba(255, 255, 255, 0.22); }
+.btn-light { background-color: #f1f5f9; color: var(--text-main); border: 1px solid var(--border-color); }
+.btn-light:hover { background-color: #e2e8f0; }
+select.btn-preset { background-color: #ffffff; color: var(--text-main); border: 2px solid #93c5fd; font-weight: 700; padding-right: 28px; }
+.btn-danger { background-color: rgba(220, 38, 38, 0.16); color: #fecaca; border: 1px solid rgba(252, 165, 165, 0.35); }
+.btn-danger:hover { background-color: rgba(220, 38, 38, 0.35); color: #ffffff; }
+.btn-danger-light { background-color: #fee2e2; color: var(--danger); border: 1px solid #fca5a5; }
+.btn-danger-light:hover { background-color: #fecaca; }
+
+.progress-card, .module-card {
+    background: var(--card-bg); padding: 26px 24px; border-radius: var(--radius);
+    box-shadow: var(--shadow); margin-bottom: 24px; border: 1px solid var(--border-color);
+}
+.progress-card { padding: 20px 24px; }
+.progress-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; font-size: 1.02rem; }
+#progressText { background: #ecfdf5; color: var(--secondary); padding: 4px 12px; border-radius: 999px; font-size: 0.9rem; font-weight: 700; }
+.progress-track { width: 100%; height: 15px; background-color: #e2e8f0; border-radius: 999px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #2563eb 0%, #059669 100%); transition: width 0.35s ease; border-radius: 999px; }
+.progress-hint { font-size: 0.92rem; color: var(--text-muted); margin-top: 10px; }
+
+.module-card { border-top: 5px solid var(--primary); }
+#mod2 { border-top-color: var(--purple); }
+#mod3 { border-top-color: var(--amber); }
+#mod4 { border-top-color: var(--secondary); }
+
+.module-badge {
+    display: inline-block; background-color: #dbeafe; color: var(--primary);
+    font-weight: 800; font-size: 0.8rem; padding: 5px 14px; border-radius: 999px;
+    margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.6px;
+}
+#mod2 .module-badge { background-color: #ede9fe; color: #6d28d9; }
+#mod3 .module-badge { background-color: #fef3c7; color: #b45309; }
+#mod4 .module-badge { background-color: #d1fae5; color: #047857; }
+
+.module-card h2 { font-size: 1.5rem; margin-bottom: 8px; color: var(--text-main); font-weight: 800; line-height: 1.3; }
+.module-desc { color: var(--text-muted); margin-bottom: 22px; font-size: 1rem; padding-bottom: 14px; border-bottom: 1px solid #e2e8f0; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.field-group { margin-bottom: 20px; }
+.field-group:last-child { margin-bottom: 0; }
+label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--text-main); font-size: 1.02rem; }
+.help-tip {
+    display: block; font-weight: 400; font-size: 0.92rem; color: var(--text-muted);
+    margin-top: 4px; margin-bottom: 6px; background: #f1f5f9; padding: 9px 12px;
+    border-radius: 8px; border-left: 3px solid #94a3b8;
+}
+
+textarea, input[type="text"], input[type="number"], select.form-select {
+    display: block; width: 100%; padding: 12px 14px; border: 2px solid var(--border-color);
+    border-radius: 12px; font-family: inherit; font-size: 1rem; color: var(--text-main);
+    background-color: var(--input-bg); transition: all 0.2s ease; margin-top: 4px;
+}
+textarea { resize: vertical; }
+textarea:focus, input[type="text"]:focus, input[type="number"]:focus, select.form-select:focus {
+    outline: none; border-color: var(--primary); background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
+}
+
+.eval-mode-box {
+    background: #f8fafc; border: 1px solid var(--border-color); border-radius: 14px;
+    padding: 16px; margin-top: 10px;
+}
+.mode-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.mode-btn {
+    border: 2px solid #cbd5e1; background: #ffffff; color: var(--text-main);
+    font-weight: 700; font-size: 0.92rem; padding: 9px 14px; border-radius: 10px;
+    cursor: pointer; transition: all 0.2s ease; font-family: inherit;
+}
+.mode-btn.active { background: var(--primary); color: #ffffff; border-color: var(--primary); }
+
+.time-summary-banner {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    background: #f5f3ff; border: 1px solid #c4b5fd; border-radius: 14px;
+    padding: 16px; margin-top: 16px;
+}
+.summary-stat { background: #ffffff; border: 1px solid #ddd6fe; border-radius: 10px; padding: 12px; }
+.summary-stat-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); }
+.summary-stat-val { font-size: 1.22rem; font-weight: 800; color: #5b21b6; margin-top: 2px; }
+
+.stages-toolbar {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px; margin-bottom: 16px;
+}
+.stages-list { display: flex; flex-direction: column; gap: 16px; }
+
+.stage-card {
+    background: #f8fafc; border: 2px solid var(--border-color); border-radius: 14px;
+    padding: 18px; transition: border-color 0.2s ease;
+}
+.stage-card.done { border-color: var(--secondary); background: #f0fdf4; }
+.stage-header {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 10px; margin-bottom: 14px; padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+.stage-title-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.stage-num-badge {
+    background: #0f172a; color: #ffffff; font-weight: 800; font-size: 0.82rem;
+    padding: 4px 11px; border-radius: 999px;
+}
+.stage-hours-pill {
+    background: #dbeafe; color: var(--primary); font-weight: 800; font-size: 0.88rem;
+    padding: 4px 12px; border-radius: 999px;
+}
+.stage-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.btn-sm { padding: 7px 11px; min-height: 36px; font-size: 0.85rem; border-radius: 8px; }
+
+.stage-meta-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+
+.tasks-box {
+    background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px;
+}
+.tasks-header {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px; margin-bottom: 10px;
+}
+.tasks-list { display: flex; flex-direction: column; gap: 8px; }
+.task-row {
+    display: flex; align-items: center; gap: 10px; background: #f8fafc;
+    border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 10px;
+}
+.task-row input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--secondary); }
+.task-row input[type="text"] { margin-top: 0; padding: 8px 10px; font-size: 0.95rem; flex: 1; }
+.task-row.completed input[type="text"] { text-decoration: line-through; color: var(--text-muted); }
+
+.active-stage-banner {
+    background: #eff6ff; border: 2px solid #93c5fd; border-radius: 14px;
+    padding: 16px; margin-bottom: 20px;
+}
+.active-stage-banner-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px; margin-bottom: 10px;
+}
+
+.lab-box { display: flex; flex-direction: column; gap: 18px; margin-bottom: 24px; }
+.lab-phase { padding: 20px; border-radius: 14px; border: 2px solid var(--border-color); }
+.lab-phase.before { background-color: var(--accent-before); border-color: var(--accent-before-border); }
+.lab-phase.after { background-color: var(--accent-after); border-color: var(--accent-after-border); }
+.lab-phase.cycle-box { background-color: #faf5ff; border-color: #d8b4fe; }
+.lab-phase h3 { font-size: 1.15rem; margin-bottom: 8px; font-weight: 800; }
+.phase-note { font-size: 0.93rem; color: var(--text-muted); margin-bottom: 14px; }
+
+.stage-tasks-preview {
+    background: #ffffff; border: 1px solid #bfdbfe; border-radius: 10px;
+    padding: 12px 14px; margin-bottom: 14px; font-size: 0.94rem;
+}
+.stage-tasks-preview ul { margin-left: 18px; margin-top: 6px; }
+
+.history-section { border-top: 2px dashed var(--border-color); padding-top: 22px; margin-top: 18px; }
+.history-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 10px; }
+.history-list { margin-top: 14px; display: flex; flex-direction: column; gap: 14px; }
+.history-item {
+    background: #f8fafc; border: 1px solid var(--border-color);
+    border-left: 6px solid var(--secondary); padding: 18px; border-radius: 12px; position: relative;
+}
+.history-item.cycle-entry { border-left-color: var(--purple); background: #fdfaff; }
+.history-item-date { font-size: 0.86rem; color: var(--text-muted); font-weight: 700; margin-bottom: 8px; }
+.history-item p { margin-bottom: 8px; font-size: 0.96rem; }
+.btn-delete-item {
+    position: absolute; top: 14px; right: 14px; background: #fee2e2; border: none;
+    color: var(--danger); padding: 4px 10px; border-radius: 6px; cursor: pointer;
+    font-size: 0.84rem; font-weight: 700;
+}
+
+.empty-msg {
+    color: var(--text-muted); font-style: italic; font-size: 0.95rem;
+    padding: 16px; background: #f8fafc; border-radius: 10px; text-align: center;
+}
+.footer { text-align: center; padding: 28px 0 44px; color: var(--text-muted); font-size: 0.94rem; }
+
+@media (max-width: 780px) {
+    .grid-2, .grid-3, .time-summary-banner, .stage-meta-grid { grid-template-columns: 1fr; }
+    .toolbar .btn, .toolbar select { width: 100%; }
+}
+@media print {
+    .toolbar, .progress-card, .btn, .btn-delete-item, .footer { display: none !important; }
+    body { background: #ffffff; font-size: 12pt; }
+    .top-bar { background: #ffffff; color: #000000; box-shadow: none; padding: 10px 0; border-bottom: 2px solid #000; }
+    h1, .subtitle { color: #000000; }
+    .module-card { box-shadow: none; border: 1px solid #999; break-inside: avoid; }
+}
+
+    </style>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="container header-content">
+            <div>
+                <span class="brand-tag">Versão 4 • Ciclo, Etapas, Tarefas e Execução Real</span>
+                <h1>O Meu Plano de Ação</h1>
+                <p class="subtitle">Define o ciclo, reparte em etapas com peso e tarefas, calcula o tempo de cada etapa e regista expectativas e conclusões por etapa e no fim do ciclo.</p>
+            </div>
+            <div class="toolbar">
+                <select id="presetSelector" class="btn btn-preset" aria-label="Carregar exemplo pronto">
+                    <option value="">💡 Ver Exemplos Prontos...</option>
+                    <option value="musica">🎵 Exemplo: Fechar uma Música em Etapas</option>
+                    <option value="financas">💰 Exemplo: Finanças e Meta em Moeda</option>
+                </select>
+                <button type="button" id="btnExport" class="btn btn-secondary">💾 Guardar Plano (.json)</button>
+                <label for="fileImport" class="btn btn-glass">📂 Abrir Plano <input type="file" id="fileImport" accept=".json" hidden></label>
+                <button type="button" id="btnPrint" class="btn btn-glass">🖨️ Imprimir / PDF</button>
+                <button type="button" id="btnClear" class="btn btn-danger">🗑️ Limpar</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="progress-card">
+            <div class="progress-header">
+                <strong>Progresso da Estrutura do Plano</strong>
+                <strong id="progressText">0% do plano base estruturado</strong>
+            </div>
+            <div class="progress-track">
+                <div id="progressFill" class="progress-fill" style="width: 0%;"></div>
+            </div>
+            <p class="progress-hint">Tudo fica guardado automaticamente no navegador do teu dispositivo (computador ou telemóvel).</p>
+        </section>
+
+        <!-- MÓDULO 1 -->
+        <section class="module-card" id="mod1">
+            <div class="module-badge">Módulo 1 de 4 • Ponto de Partida e Avaliação</div>
+            <h2>Onde Estou, O Que Quero Fechar e Como Avaliar</h2>
+            <p class="module-desc">Define a situação real, a meta do ciclo e escolhe se este objetivo se avalia com moeda ou por peso/progresso não financeiro.</p>
+
+            <div class="field-group">
+                <label for="m1_criador">Criador do Plano (Nome / Autor)</label>
+                <span class="help-tip">Identifica quem criou ou está a executar este plano (fica guardado no plano e incluído ao exportar .json).</span>
+                <input type="text" id="m1_criador" placeholder="Ex.: Nome do criador ou projeto...">
+            </div>
+
+            <div class="field-group">
+                <label for="m1_onde_estou">1. Como está a tua situação hoje?</label>
+                <span class="help-tip">Tempo livre real, rotina, bloqueios ou ponto de partida sem rodeios.</span>
+                <textarea id="m1_onde_estou" rows="2" placeholder="Ex.: Trabalho fixo, pouco tempo livre diário..."></textarea>
+            </div>
+
+            <div class="field-group">
+                <label for="m1_onde_quero_chegar">2. O que queres tornar real neste ciclo?</label>
+                <span class="help-tip">O resultado concreto que queres ver concluído quando o ciclo terminar.</span>
+                <textarea id="m1_onde_quero_chegar" rows="2" placeholder="Ex.: Ter a música pronta para lançamento..."></textarea>
+            </div>
+
+            <div class="field-group">
+                <label for="m1_porque">3. Porque é que isto importa agora?</label>
+                <textarea id="m1_porque" rows="2" placeholder="Ex.: Autodisciplina, consistência e avanço real..."></textarea>
+            </div>
+
+            <div class="eval-mode-box">
+                <label>4. Como queres avaliar este objetivo?</label>
+                <div class="mode-buttons" role="group">
+                    <button type="button" class="mode-btn eval-mode-btn active" data-eval="progress">🎯 Peso / Progresso (Não-Dinheiro)</button>
+                    <button type="button" class="mode-btn eval-mode-btn" data-eval="money">💶 Dinheiro (Várias Moedas)</button>
+                </div>
+
+                <div id="nonMoneyBox" style="margin-top: 14px;">
+                    <label for="nonMoneyMetricInput">Critério ou peso não financeiro</label>
+                    <input type="text" id="nonMoneyMetricInput" value="marcos e tarefas concluídas" placeholder="Ex.: marcos, fases ou execução concluída">
+                </div>
+
+                <div id="moneyTargetBox" style="display: none; margin-top: 14px;">
+                    <div class="grid-2">
+                        <div>
+                            <label for="currencySelect">Moeda</label>
+                            <select id="currencySelect" class="form-select"></select>
+                        </div>
+                        <div>
+                            <label for="targetValueInput" id="targetValueLabel">Meta numérica do ciclo (€)</label>
+                            <input type="number" id="targetValueInput" min="0" step="1" value="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 2 -->
+        <section class="module-card" id="mod2">
+            <div class="module-badge">Módulo 2 de 4 • Ciclo, Tempo e Cortes</div>
+            <h2>Duração do Ciclo, Tempo Disponível, Cortes e Apoios</h2>
+            <p class="module-desc">Define o prazo máximo do ciclo, o teu ritmo real de horas e o que vais cortar ou aproveitar.</p>
+
+            <div class="grid-3">
+                <div>
+                    <label for="cycleModeSelect">Duração do Ciclo</label>
+                    <select id="cycleModeSelect" class="form-select">
+                        <option value="1w">1 Semana</option>
+                        <option value="1m" selected>1 Mês (4 semanas)</option>
+                        <option value="2m">2 Meses (8 semanas)</option>
+                        <option value="4m">4 Meses (16 semanas)</option>
+                        <option value="1y">1 Ano (52 semanas)</option>
+                        <option value="custom">Personalizado (semanas)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="sessionsPerWeekInput">Sessões / Dias por Semana</label>
+                    <input type="number" id="sessionsPerWeekInput" min="1" max="35" step="1" value="4">
+                </div>
+                <div>
+                    <label for="hoursPerSessionInput">Horas por Sessão / Dia</label>
+                    <input type="number" id="hoursPerSessionInput" min="0.25" max="24" step="0.25" value="2">
+                </div>
+            </div>
+
+            <div id="customWeeksBox" style="display: none; margin-top: 14px;">
+                <label for="customWeeksInput">Quantas semanas tem o ciclo personalizado?</label>
+                <input type="number" id="customWeeksInput" min="1" max="300" value="4">
+            </div>
+
+            <div class="time-summary-banner">
+                <div class="summary-stat">
+                    <div class="summary-stat-label">Tempo Total Estimado do Ciclo</div>
+                    <div class="summary-stat-val" id="sumTotalHours">16 h</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="summary-stat-label">Soma dos Pesos das Etapas</div>
+                    <div class="summary-stat-val" id="sumTotalWeight">7</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="summary-stat-label">Etapas Concluídas</div>
+                    <div class="summary-stat-val" id="sumDoneStages">0 / 3</div>
+                </div>
+            </div>
+
+            <div class="grid-2" style="margin-top: 20px;">
+                <div class="field-group">
+                    <label for="m2_eliminar">O que vais cortar ou travar?</label>
+                    <textarea id="m2_eliminar" rows="3" placeholder="Ex.: Distrações, dispersão..."></textarea>
+                </div>
+                <div class="field-group">
+                    <label for="m2_recursos">O que já tens a teu favor?</label>
+                    <textarea id="m2_recursos" rows="3" placeholder="Ex.: Conhecimento, ferramentas, foco..."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 3 -->
+        <section class="module-card" id="mod3">
+            <div class="module-badge">Módulo 3 de 4 • Etapas, Tarefas e Pesos</div>
+            <h2>Organizar Etapas, Tarefas e Calcular Tempo por Etapa</h2>
+            <p class="module-desc">Adiciona, ordena ou remove etapas, define as tarefas dentro de cada etapa e atribui pesos para calcular quantas horas cabem em cada etapa.</p>
+
+            <div class="stages-toolbar">
+                <strong>Lista de Etapas do Ciclo</strong>
+                <button type="button" id="btnAddStage" class="btn btn-primary">+ Adicionar Etapa</button>
+            </div>
+
+            <div id="stagesList" class="stages-list"></div>
+        </section>
+
+        <!-- MÓDULO 4 -->
+        <section class="module-card" id="mod4">
+            <div class="module-badge">Módulo 4 de 4 • Expectativas, Execução e Conclusões</div>
+            <h2>Expectativas, Tarefas da Etapa e Conclusões (Por Etapa e No Fim do Ciclo)</h2>
+            <p class="module-desc">Seleciona a etapa em foco para ver as tarefas e registar o que precisas saber, a expectativa inicial e a conclusão ao concluir — e regista também a conclusão final do ciclo completo.</p>
+
+            <div class="active-stage-banner">
+                <div class="active-stage-banner-top">
+                    <label for="activeStageSelect" style="margin: 0;">Etapa em foco:</label>
+                    <select id="activeStageSelect" class="form-select" style="max-width: 420px; margin-top: 0;"></select>
+                </div>
+                <div id="activeStageTasksPreview" class="stage-tasks-preview"></div>
+            </div>
+
+            <div class="lab-box">
+                <div class="lab-phase before">
+                    <h3>🎯 Início / Avaliação da Etapa (Expectativa e O Que Preciso Saber)</h3>
+                    <p class="phase-note">Regista no início da etapa o que pretendes ou precisas saber e o que esperas alcançar nela.</p>
+                    <div class="field-group">
+                        <label for="m4_preciso_saber">O que preciso saber ou pretendo nesta etapa?</label>
+                        <textarea id="m4_preciso_saber" rows="2" placeholder="Ex.: O que preciso definir ou resolver antes de avançar..."></textarea>
+                    </div>
+                    <div class="field-group">
+                        <label for="m4_expectativa_etapa">Expectativa desta etapa</label>
+                        <textarea id="m4_expectativa_etapa" rows="2" placeholder="Ex.: O que espero concluir ou alcançar nesta etapa..."></textarea>
+                    </div>
+                </div>
+
+                <div class="lab-phase after">
+                    <h3>✅ Conclusão da Etapa (Ao Terminar Esta Etapa)</h3>
+                    <p class="phase-note">Quando terminares esta etapa, escreve a conclusão e marca como feita para ficar guardada no histórico.</p>
+                    <div class="field-group">
+                        <label for="m4_conclusao_etapa">Conclusão tirada desta etapa</label>
+                        <textarea id="m4_conclusao_etapa" rows="3" placeholder="Ex.: O que resultou, quanto tempo levou na prática e o que fica assente..."></textarea>
+                    </div>
+                    <button type="button" id="btnSaveStageLog" class="btn btn-secondary">✔ Marcar Etapa como Feita e Guardar Conclusão</button>
+                </div>
+
+                <div class="lab-phase cycle-box">
+                    <h3>🏁 Fecho do Ciclo Completo (Expectativa e Conclusão Final)</h3>
+                    <p class="phase-note">Regista a expectativa do ciclo total e, quando terminares o ciclo todo, escreve a conclusão final que tiraste.</p>
+                    <div class="field-group">
+                        <label for="m4_expectativa_ciclo">Expectativa do ciclo total</label>
+                        <textarea id="m4_expectativa_ciclo" rows="2" placeholder="Ex.: O que esperavas concretizar ao fim de todo o ciclo..."></textarea>
+                    </div>
+                    <div class="field-group">
+                        <label for="m4_conclusao_ciclo">Conclusão final do ciclo (no fim de tudo)</label>
+                        <textarea id="m4_conclusao_ciclo" rows="3" placeholder="Ex.: Balanço final do ciclo, o que se tornou real e aprendizados..."></textarea>
+                    </div>
+                    <button type="button" id="btnSaveCycleLog" class="btn btn-amber">🏁 Guardar Conclusão Final do Ciclo</button>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <div class="history-header">
+                    <h3>📓 Histórico de Etapas Concluídas e Conclusões do Ciclo</h3>
+                </div>
+                <div id="historyList" class="history-list">
+                    <p class="empty-msg">Ainda não tens registos guardados.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>O Meu Plano de Ação v4 • Ciclo, Etapas com Peso, Tarefas e Conclusões por Etapa e por Ciclo.</p>
+        </div>
+    </footer>
+
+    <script>
+
+document.addEventListener("DOMContentLoaded", () => {
+    const STORAGE_KEY = "meu_plano_acao_universal_v4";
+
+    const CURRENCIES = [
+        { code: "EUR", symbol: "€", label: "Euro (€)" },
+        { code: "USD", symbol: "$", label: "Dólar Americano ($)" },
+        { code: "BRL", symbol: "R$", label: "Real Brasileiro (R$)" },
+        { code: "GBP", symbol: "£", label: "Libra Esterlina (£)" },
+        { code: "AOA", symbol: "Kz", label: "Kwanza Angolano (Kz)" },
+        { code: "CHF", symbol: "CHF", label: "Franco Suíço (CHF)" }
+    ];
+
+    const planTextIds = [
+        "m1_criador", "m1_onde_estou", "m1_onde_quero_chegar", "m1_porque",
+        "m2_eliminar", "m2_recursos",
+        "m4_expectativa_etapa", "m4_preciso_saber", "m4_conclusao_etapa",
+        "m4_expectativa_ciclo", "m4_conclusao_ciclo"
+    ];
+
+    function uid(prefix = "id") {
+        return prefix + "_" + Math.random().toString(36).slice(2, 9);
+    }
+
+    function makeStage(name, weight, tasks = [], expectation = "", needsToKnow = "", conclusion = "", completed = false, startedAt = "", finishedAt = "", actualHours = "") {
+        return {
+            id: uid("stg"),
+            name,
+            weight: Math.max(1, Number(weight) || 1),
+            completed: Boolean(completed),
+            startedAt,
+            finishedAt,
+            actualHours,
+            expectation,
+            needsToKnow,
+            conclusion,
+            tasks: tasks.map(t => typeof t === "string"
+                ? { id: uid("tsk"), title: t, done: false }
+                : { id: t.id || uid("tsk"), title: t.title || "", done: Boolean(t.done) })
+        };
+    }
+
+    const PRESETS = {
+        musica: {
+            fields: {
+                m1_criador: "Criador Exemplo (Música)",
+                m1_onde_estou: "Tenho trabalho fixo, pouco tempo livre diário e várias obrigações, mas quero fechar entregas consistentes.",
+                m1_onde_quero_chegar: "Ter uma música pronta para lançamento no fim deste ciclo.",
+                m1_porque: "Para manter autodisciplina, transformar ideia em obra real e ganhar ritmo contínuo.",
+                m2_eliminar: "Distrações, começar várias ideias ao mesmo tempo e deixar sessões sem foco.",
+                m2_recursos: "Conhecimento de produção, independência técnica, DAW pronta e blocos de tempo livre.",
+                m4_expectativa_etapa: "Fechar a base harmónica e melódica com clareza nesta etapa.",
+                m4_preciso_saber: "Definir o andamento, tonalidade e sensação emocional antes de avançar para arranjos.",
+                m4_conclusao_etapa: "",
+                m4_expectativa_ciclo: "Concluir todas as etapas até ter o tema pronto para lançar.",
+                m4_conclusao_ciclo: ""
+            },
+            cycle: {
+                mode: "1m",
+                customWeeks: 4,
+                hoursPerSession: 2,
+                sessionsPerWeek: 4,
+                evalMode: "progress",
+                currency: "EUR",
+                nonMoneyMetric: "marcos e tarefas concluídas",
+                targetValue: 100
+            },
+            activeStageIndex: 0,
+            stages: [
+                makeStage("Etapa 1: Harmonia e Melodia", 3, ["Definir ideia e tonalidade", "Criar progressão harmónica", "Testar linhas melódicas"], "Construir uma base harmónica forte.", "Qual o clima/ritmo principal do tema.", "", false),
+                makeStage("Etapa 2: Arranjo e Estrutura", 3, ["Montar estrutura na DAW", "Criar baterias/percussão", "Ajustar transições"], "Ter a estrutura completa do início ao fim.", "Onde entram variações e quebras.", "", false),
+                makeStage("Etapa 3: Voz e Detalhes", 2, ["Gravar/trabalhar vozes ou leads", "Refinar timbres e camadas"], "Dar identidade e emoção à faixa.", "Que detalhes acrescentam sem pesar.", "", false),
+                makeStage("Etapa 4: Mistura, Master e Fecho", 2, ["Equilibrar volumes e frequências", "Fazer master final", "Validar para lançamento"], "Fechar o som com qualidade pronta a lançar.", "Conferir consistência em diferentes colunas/auscultadores.", "", false)
+            ],
+            history: []
+        },
+        financas: {
+            fields: {
+                m1_criador: "Criador Exemplo (Finanças)",
+                m1_onde_estou: "Tenho rendimento fixo, despesas recorrentes e quero criar margem financeira estruturada.",
+                m1_onde_quero_chegar: "Construir reserva e validar fonte extra de rendimento dentro do ciclo.",
+                m1_porque: "Para dar mais tranquilidade financeira e liberdade de decisão.",
+                m2_eliminar: "Gastos impulsivos, subscrições sem uso e improvisos no orçamento.",
+                m2_recursos: "Organização, capacidade de trabalho e conhecimento prático.",
+                m4_expectativa_etapa: "Levantar todos os gastos fixos e variáveis do mês atual.",
+                m4_preciso_saber: "Onde está a fugir dinheiro todas as semanas.",
+                m4_conclusao_etapa: "",
+                m4_expectativa_ciclo: "Ter plano financeiro ativo e meta de valor alcançada no ciclo.",
+                m4_conclusao_ciclo: ""
+            },
+            cycle: {
+                mode: "3m",
+                customWeeks: 12,
+                hoursPerSession: 2,
+                sessionsPerWeek: 3,
+                evalMode: "money",
+                currency: "EUR",
+                nonMoneyMetric: "marcos concluídos",
+                targetValue: 1500
+            },
+            activeStageIndex: 0,
+            stages: [
+                makeStage("Etapa 1: Raio-X Financeiro", 2, ["Listar entradas e despesas fixas", "Identificar cortes rápidos"], "Clareza total sobre os números atuais.", "Valor exato do défice ou sobra mensal.", "", false),
+                makeStage("Etapa 2: Estrutura de Reserva", 3, ["Definir valor automático por ciclo", "Criar regra de separação"], "Começar a acumular sem depender de sobras.", "Quanto consigo separar com segurança.", "", false),
+                makeStage("Etapa 3: Geração Extra", 5, ["Definir oferta ou ação prática", "Executar contactos/entregas", "Acompanhar retorno"], "Gerar valor real acima do ponto inicial.", "Qual ação traz retorno mais rápido.", "", false)
+            ],
+            history: []
+        }
+    };
+
+    function defaultState() {
+        const fields = {};
+        planTextIds.forEach(id => { fields[id] = ""; });
+        return {
+            fields,
+            cycle: {
+                mode: "1m",
+                customWeeks: 4,
+                hoursPerSession: 2,
+                sessionsPerWeek: 4,
+                evalMode: "progress",
+                currency: "EUR",
+                nonMoneyMetric: "marcos e tarefas concluídas",
+                targetValue: 100
+            },
+            activeStageIndex: 0,
+            stages: [
+                makeStage("Etapa 1", 2, ["Definir o ponto de partida", "Executar a primeira tarefa concreta"], "", "", "", false),
+                makeStage("Etapa 2", 3, ["Desenvolver o núcleo da etapa", "Rever e ajustar"], "", "", "", false),
+                makeStage("Etapa 3", 2, ["Concluir e validar entrega"], "", "", "", false)
+            ],
+            history: []
+        };
+    }
+
+    let state = defaultState();
+
+    // Elementos DOM
+    const currencySelect = document.getElementById("currencySelect");
+    const moneyTargetBox = document.getElementById("moneyTargetBox");
+    const nonMoneyBox = document.getElementById("nonMoneyBox");
+    const targetValueInput = document.getElementById("targetValueInput");
+    const nonMoneyMetricInput = document.getElementById("nonMoneyMetricInput");
+    const targetValueLabel = document.getElementById("targetValueLabel");
+
+    const cycleModeSelect = document.getElementById("cycleModeSelect");
+    const customWeeksBox = document.getElementById("customWeeksBox");
+    const customWeeksInput = document.getElementById("customWeeksInput");
+    const hoursPerSessionInput = document.getElementById("hoursPerSessionInput");
+    const sessionsPerWeekInput = document.getElementById("sessionsPerWeekInput");
+
+    const sumTotalHours = document.getElementById("sumTotalHours");
+    const sumTotalWeight = document.getElementById("sumTotalWeight");
+    const sumDoneStages = document.getElementById("sumDoneStages");
+
+    const stagesListEl = document.getElementById("stagesList");
+    const activeStageSelect = document.getElementById("activeStageSelect");
+    const activeStageTasksPreview = document.getElementById("activeStageTasksPreview");
+
+    const progressFill = document.getElementById("progressFill");
+    const progressText = document.getElementById("progressText");
+    const historyListEl = document.getElementById("historyList");
+
+    function populateCurrencies() {
+        currencySelect.innerHTML = "";
+        CURRENCIES.forEach(c => {
+            const opt = document.createElement("option");
+            opt.value = c.code;
+            opt.textContent = c.label;
+            currencySelect.appendChild(opt);
+        });
+    }
+
+    function getCycleWeeks() {
+        const m = state.cycle.mode;
+        if (m === "1w") return 1;
+        if (m === "1m") return 4;
+        if (m === "2m") return 8;
+        if (m === "4m") return 16;
+        if (m === "1y") return 52;
+        return Math.max(1, Number(state.cycle.customWeeks) || 4);
+    }
+
+    function getTotalCycleHours() {
+        const weeks = getCycleWeeks();
+        const hps = Math.max(0.25, Number(state.cycle.hoursPerSession) || 1);
+        const spw = Math.max(1, Number(state.cycle.sessionsPerWeek) || 1);
+        return Math.round(weeks * spw * hps * 10) / 10;
+    }
+
+    function getStageAllocatedHours(stageIndex) {
+        const totalHours = getTotalCycleHours();
+        const totalWeight = state.stages.reduce((acc, s) => acc + Math.max(1, Number(s.weight) || 1), 0) || 1;
+        const w = Math.max(1, Number(state.stages[stageIndex]?.weight) || 1);
+        return Math.round(((w / totalWeight) * totalHours) * 10) / 10;
+    }
+
+    function getCurrencySymbol() {
+        const found = CURRENCIES.find(c => c.code === state.cycle.currency);
+        return found ? found.symbol : "€";
+    }
+
+    function saveState() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        updateSummaryAndProgress();
+        renderActiveStagePreview();
+    }
+
+    function updateSummaryAndProgress() {
+        const totalHours = getTotalCycleHours();
+        const totalWeight = state.stages.reduce((acc, s) => acc + Math.max(1, Number(s.weight) || 1), 0);
+        const doneCount = state.stages.filter(s => s.completed).length;
+
+        sumTotalHours.textContent = `${totalHours} h`;
+        sumTotalWeight.textContent = `${totalWeight}`;
+        sumDoneStages.textContent = `${doneCount} / ${state.stages.length}`;
+
+        const baseFields = ["m1_criador", "m1_onde_estou", "m1_onde_quero_chegar", "m1_porque", "m2_eliminar", "m2_recursos"];
+        let filled = baseFields.filter(id => (state.fields[id] || "").trim().length > 2).length;
+        if (state.stages.length > 0 && state.stages.every(s => (s.name || "").trim().length > 0)) filled++;
+        const percent = Math.round((filled / (baseFields.length + 1)) * 100);
+        progressFill.style.width = percent + "%";
+        progressText.textContent = `${percent}% do plano base estruturado`;
+
+        // Atualizar horas exibidas em cada cartão de etapa sem perder foco dos inputs
+        document.querySelectorAll("[data-stage-hours-pill]").forEach(pill => {
+            const idx = Number(pill.getAttribute("data-stage-hours-pill"));
+            if (!Number.isNaN(idx) && state.stages[idx]) {
+                pill.textContent = `⏱️ Tempo alocado: ${getStageAllocatedHours(idx)} h`;
+            }
+        });
+    }
+
+    function syncEvalModeUI() {
+        const isMoney = state.cycle.evalMode === "money";
+        document.querySelectorAll(".eval-mode-btn").forEach(btn => {
+            btn.classList.toggle("active", btn.getAttribute("data-eval") === state.cycle.evalMode);
+        });
+        moneyTargetBox.style.display = isMoney ? "block" : "none";
+        nonMoneyBox.style.display = isMoney ? "none" : "block";
+        const sym = getCurrencySymbol();
+        targetValueLabel.textContent = `Meta numérica do ciclo (${sym})`;
+    }
+
+    function syncCycleModeUI() {
+        customWeeksBox.style.display = state.cycle.mode === "custom" ? "block" : "none";
+    }
+
+    function escapeHTML(str) {
+        if (!str) return "";
+        return String(str).replace(/[&<>'"]/g, tag => ({
+            "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
+        }[tag]));
+    }
+
+    function renderStages() {
+        if (!Array.isArray(state.stages) || state.stages.length === 0) {
+            state.stages = [makeStage("Etapa 1", 1, ["Primeira tarefa"])];
+        }
+        if (state.activeStageIndex >= state.stages.length) {
+            state.activeStageIndex = Math.max(0, state.stages.length - 1);
+        }
+
+        stagesListEl.innerHTML = "";
+        state.stages.forEach((stage, idx) => {
+            const card = document.createElement("div");
+            card.className = "stage-card" + (stage.completed ? " done" : "");
+            const allocatedH = getStageAllocatedHours(idx);
+            const doneTasks = stage.tasks.filter(t => t.done).length;
+
+            const tasksHtml = stage.tasks.map((t, tIdx) => `
+                <div class="task-row ${t.done ? "completed" : ""}">
+                    <input type="checkbox" ${t.done ? "checked" : ""} data-task-check="${idx}:${tIdx}" title="Marcar tarefa como concluída">
+                    <input type="text" value="${escapeHTML(t.title)}" placeholder="Nome da tarefa..." data-task-title="${idx}:${tIdx}">
+                    <button type="button" class="btn btn-danger-light btn-sm" data-task-del="${idx}:${tIdx}" title="Remover tarefa">✕</button>
+                </div>
+            `).join("");
+
+            card.innerHTML = `
+                <div class="stage-header">
+                    <div class="stage-title-group">
+                        <span class="stage-num-badge">Etapa ${idx + 1}</span>
+                        <span class="stage-hours-pill" data-stage-hours-pill="${idx}">⏱️ Tempo alocado: ${allocatedH} h</span>
+                        <span style="font-size:0.88rem; font-weight:700; color:var(--text-muted);">Tarefas: ${doneTasks}/${stage.tasks.length}</span>
+                        ${stage.completed ? `<span style="font-size:0.86rem; font-weight:800; color:var(--secondary);">✔ Concluída</span>` : ""}
+                    </div>
+                    <div class="stage-actions">
+                        <button type="button" class="btn btn-light btn-sm" data-stage-up="${idx}" ${idx === 0 ? "disabled" : ""}>↑ Subir</button>
+                        <button type="button" class="btn btn-light btn-sm" data-stage-down="${idx}" ${idx === state.stages.length - 1 ? "disabled" : ""}>↓ Descer</button>
+                        <button type="button" class="btn btn-secondary btn-sm" data-stage-toggle-done="${idx}">${stage.completed ? "Reabrir Etapa" : "Marcar Feita"}</button>
+                        <button type="button" class="btn btn-danger-light btn-sm" data-stage-del="${idx}">Remover</button>
+                    </div>
+                </div>
+
+                <div class="stage-meta-grid">
+                    <div>
+                        <label style="font-size:0.92rem;">Nome da Etapa / Marco</label>
+                        <input type="text" value="${escapeHTML(stage.name)}" placeholder="Ex.: Composição, Gravação, Mistura..." data-stage-name="${idx}">
+                    </div>
+                    <div>
+                        <label style="font-size:0.92rem;">Peso / Importância</label>
+                        <input type="number" min="1" max="100" value="${Number(stage.weight) || 1}" data-stage-weight="${idx}">
+                    </div>
+                    <div>
+                        <label style="font-size:0.92rem;">Horas Reais Gastas (opcional)</label>
+                        <input type="text" value="${escapeHTML(stage.actualHours || "")}" placeholder="Ex.: 3,5h" data-stage-actual-hours="${idx}">
+                    </div>
+                </div>
+
+                <div class="tasks-box">
+                    <div class="tasks-header">
+                        <strong style="font-size:0.95rem;">Tarefas desta etapa (${stage.tasks.length})</strong>
+                        <button type="button" class="btn btn-primary btn-sm" data-task-add="${idx}">+ Adicionar Tarefa</button>
+                    </div>
+                    <div class="tasks-list">
+                        ${tasksHtml || `<p class="empty-msg" style="padding:10px;">Sem tarefas ainda. Clica em "+ Adicionar Tarefa".</p>`}
+                    </div>
+                </div>
+            `;
+            stagesListEl.appendChild(card);
+        });
+
+        bindStageEvents();
+        renderActiveStageSelector();
+        renderActiveStagePreview();
+        updateSummaryAndProgress();
+    }
+
+    function bindStageEvents() {
+        document.querySelectorAll("[data-stage-name]").forEach(inp => {
+            inp.addEventListener("input", (e) => {
+                const idx = Number(e.target.getAttribute("data-stage-name"));
+                state.stages[idx].name = e.target.value;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+                renderActiveStageSelector();
+                renderActiveStagePreview();
+                updateSummaryAndProgress();
+            });
+        });
+
+        document.querySelectorAll("[data-stage-weight]").forEach(inp => {
+            inp.addEventListener("input", (e) => {
+                const idx = Number(e.target.getAttribute("data-stage-weight"));
+                state.stages[idx].weight = Math.max(1, Number(e.target.value) || 1);
+                saveState();
+            });
+        });
+
+        document.querySelectorAll("[data-stage-actual-hours]").forEach(inp => {
+            inp.addEventListener("input", (e) => {
+                const idx = Number(e.target.getAttribute("data-stage-actual-hours"));
+                state.stages[idx].actualHours = e.target.value;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            });
+        });
+
+        document.querySelectorAll("[data-stage-up]").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const idx = Number(e.target.getAttribute("data-stage-up"));
+                if (idx <= 0) return;
+                const temp = state.stages[idx - 1];
+                state.stages[idx - 1] = state.stages[idx];
+                state.stages[idx] = temp;
+                if (state.activeStageIndex === idx) state.activeStageIndex = idx - 1;
+                saveState();
+                renderStages();
+            });
+        });
+
+        document.querySelectorAll("[data-stage-down]").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const idx = Number(e.target.getAttribute("data-stage-down"));
+                if (idx >= state.stages.length - 1) return;
+                const temp = state.stages[idx + 1];
+                state.stages[idx + 1] = state.stages[idx];
+                state.stages[idx] = temp;
+                if (state.activeStageIndex === idx) state.activeStageIndex = idx + 1;
+                saveState();
+                renderStages();
+            });
+        });
+
+        document.querySelectorAll("[data-stage-toggle-done]").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const idx = Number(e.target.getAttribute("data-stage-toggle-done"));
+                state.stages[idx].completed = !state.stages[idx].completed;
+                saveState();
+                renderStages();
+            });
+        });
+
+        document.querySelectorAll("[data-stage-del]").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const idx = Number(e.target.getAttribute("data-stage-del"));
+                if (state.stages.length <= 1) {
+                    alert("Mantém pelo menos 1 etapa no ciclo.");
+                    return;
+                }
+                state.stages.splice(idx, 1);
+                if (state.activeStageIndex >= state.stages.length) state.activeStageIndex = state.stages.length - 1;
+                saveState();
+                renderStages();
+            });
+        });
+
+        document.querySelectorAll("[data-task-add]").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const idx = Number(e.target.getAttribute("data-task-add"));
+                state.stages[idx].tasks.push({ id: uid("tsk"), title: "", done: false });
+                saveState();
+                renderStages();
+            });
+        });
+
+        document.querySelectorAll("[data-task-check]").forEach(chk => {
+            chk.addEventListener("change", (e) => {
+                const [sIdx, tIdx] = e.target.getAttribute("data-task-check").split(":").map(Number);
+                state.stages[sIdx].tasks[tIdx].done = e.target.checked;
+                saveState();
+                renderStages();
+            });
+        });
+
+        document.querySelectorAll("[data-task-title]").forEach(inp => {
+            inp.addEventListener("input", (e) => {
+                const [sIdx, tIdx] = e.target.getAttribute("data-task-title").split(":").map(Number);
+                state.stages[sIdx].tasks[tIdx].title = e.target.value;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+                renderActiveStagePreview();
+            });
+        });
+
+        document.querySelectorAll("[data-task-del]").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const [sIdx, tIdx] = e.target.getAttribute("data-task-del").split(":").map(Number);
+                state.stages[sIdx].tasks.splice(tIdx, 1);
+                saveState();
+                renderStages();
+            });
+        });
+    }
+
+    function renderActiveStageSelector() {
+        activeStageSelect.innerHTML = "";
+        state.stages.forEach((st, idx) => {
+            const opt = document.createElement("option");
+            opt.value = String(idx);
+            const labelName = (st.name || "").trim() || `Etapa ${idx + 1}`;
+            opt.textContent = `Etapa ${idx + 1}: ${labelName} (${getStageAllocatedHours(idx)}h)${st.completed ? " ✔" : ""}`;
+            activeStageSelect.appendChild(opt);
+        });
+        activeStageSelect.value = String(state.activeStageIndex || 0);
+    }
+
+    function renderActiveStagePreview() {
+        const idx = Math.max(0, Math.min(state.stages.length - 1, Number(state.activeStageIndex) || 0));
+        const st = state.stages[idx];
+        if (!st) return;
+
+        const name = (st.name || "").trim() || `Etapa ${idx + 1}`;
+        const tasks = st.tasks.filter(t => (t.title || "").trim().length > 0);
+        const taskItems = tasks.length > 0
+            ? `<ul>${tasks.map(t => `<li>${t.done ? "✔ " : "• "}${escapeHTML(t.title)}</li>`).join("")}</ul>`
+            : `<p style="color:var(--text-muted); margin-top:4px;">Nenhuma tarefa nomeada nesta etapa ainda.</p>`;
+
+        activeStageTasksPreview.innerHTML = `
+            <div><strong>Em foco agora:</strong> ${escapeHTML(name)} — <strong>Tempo estimado:</strong> ${getStageAllocatedHours(idx)} h — <strong>Peso:</strong> ${st.weight}</div>
+            ${taskItems}
+        `;
+
+        document.getElementById("m4_expectativa_etapa").value = st.expectation || "";
+        document.getElementById("m4_preciso_saber").value = st.needsToKnow || "";
+        document.getElementById("m4_conclusao_etapa").value = st.conclusion || "";
+    }
+
+    function renderHistory() {
+        if (!Array.isArray(state.history) || state.history.length === 0) {
+            historyListEl.innerHTML = `<p class="empty-msg">Ainda não tens registos guardados. Guarda conclusões de etapas ou a conclusão final do ciclo quando terminares.</p>`;
+            return;
+        }
+        historyListEl.innerHTML = "";
+        state.history.forEach((entry, idx) => {
+            const div = document.createElement("div");
+            div.className = "history-item" + (entry.type === "cycle" ? " cycle-entry" : "");
+            const badge = entry.type === "cycle" ? "🏁 CONCLUSÃO DO CICLO" : `📌 ETAPA: ${escapeHTML(entry.stageName || "Etapa")}`;
+            div.innerHTML = `
+                <div class="history-item-date">${badge} • 📅 ${escapeHTML(entry.date)}</div>
+                ${entry.needsToKnow ? `<p><strong>O que precisava saber / pretendia:</strong> ${escapeHTML(entry.needsToKnow)}</p>` : ""}
+                ${entry.expectation ? `<p><strong>Expectativa inicial:</strong> ${escapeHTML(entry.expectation)}</p>` : ""}
+                <p><strong>Conclusão tirada:</strong> ${escapeHTML(entry.conclusion)}</p>
+                <button type="button" class="btn-delete-item" data-hist-del="${idx}">✕ Remover</button>
+            `;
+            historyListEl.appendChild(div);
+        });
+
+        document.querySelectorAll("[data-hist-del]").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const idx = Number(e.target.getAttribute("data-hist-del"));
+                if (confirm("Remover este registo do histórico?")) {
+                    state.history.splice(idx, 1);
+                    saveState();
+                    renderHistory();
+                }
+            });
+        });
+    }
+
+    function applyStateToUI() {
+        planTextIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = (state.fields && state.fields[id]) || "";
+        });
+
+        currencySelect.value = state.cycle.currency || "EUR";
+        targetValueInput.value = state.cycle.targetValue ?? 100;
+        nonMoneyMetricInput.value = state.cycle.nonMoneyMetric || "marcos e tarefas concluídas";
+        cycleModeSelect.value = state.cycle.mode || "1m";
+        customWeeksInput.value = state.cycle.customWeeks || 4;
+        hoursPerSessionInput.value = state.cycle.hoursPerSession || 2;
+        sessionsPerWeekInput.value = state.cycle.sessionsPerWeek || 4;
+
+        syncEvalModeUI();
+        syncCycleModeUI();
+        renderStages();
+        renderHistory();
+        updateSummaryAndProgress();
+    }
+
+    // Eventos globais
+    planTextIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener("input", () => {
+            state.fields[id] = el.value;
+            const sIdx = Math.max(0, Math.min(state.stages.length - 1, Number(state.activeStageIndex) || 0));
+            if (id === "m4_expectativa_etapa") state.stages[sIdx].expectation = el.value;
+            if (id === "m4_preciso_saber") state.stages[sIdx].needsToKnow = el.value;
+            if (id === "m4_conclusao_etapa") state.stages[sIdx].conclusion = el.value;
+            saveState();
+        });
+    });
+
+    document.querySelectorAll(".eval-mode-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            state.cycle.evalMode = btn.getAttribute("data-eval");
+            syncEvalModeUI();
+            saveState();
+        });
+    });
+
+    currencySelect.addEventListener("change", (e) => {
+        state.cycle.currency = e.target.value;
+        syncEvalModeUI();
+        saveState();
+    });
+
+    targetValueInput.addEventListener("input", (e) => {
+        state.cycle.targetValue = Math.max(0, Number(e.target.value) || 0);
+        saveState();
+    });
+
+    nonMoneyMetricInput.addEventListener("input", (e) => {
+        state.cycle.nonMoneyMetric = e.target.value;
+        saveState();
+    });
+
+    cycleModeSelect.addEventListener("change", (e) => {
+        state.cycle.mode = e.target.value;
+        syncCycleModeUI();
+        saveState();
+        renderStages();
+    });
+
+    customWeeksInput.addEventListener("input", (e) => {
+        state.cycle.customWeeks = Math.max(1, Math.min(300, Number(e.target.value) || 1));
+        saveState();
+        renderStages();
+    });
+
+    hoursPerSessionInput.addEventListener("input", (e) => {
+        state.cycle.hoursPerSession = Math.max(0.25, Math.min(24, Number(e.target.value) || 1));
+        saveState();
+        renderStages();
+    });
+
+    sessionsPerWeekInput.addEventListener("input", (e) => {
+        state.cycle.sessionsPerWeek = Math.max(1, Math.min(35, Number(e.target.value) || 1));
+        saveState();
+        renderStages();
+    });
+
+    document.getElementById("btnAddStage").addEventListener("click", () => {
+        const nextNum = state.stages.length + 1;
+        state.stages.push(makeStage(`Etapa ${nextNum}`, 1, ["Definir tarefa desta etapa"]));
+        state.activeStageIndex = state.stages.length - 1;
+        saveState();
+        renderStages();
+    });
+
+    activeStageSelect.addEventListener("change", (e) => {
+        state.activeStageIndex = Number(e.target.value) || 0;
+        saveState();
+        renderActiveStagePreview();
+    });
+
+    document.getElementById("btnSaveStageLog").addEventListener("click", () => {
+        const idx = Math.max(0, Math.min(state.stages.length - 1, Number(state.activeStageIndex) || 0));
+        const st = state.stages[idx];
+        const expectation = document.getElementById("m4_expectativa_etapa").value.trim();
+        const needsToKnow = document.getElementById("m4_preciso_saber").value.trim();
+        const conclusion = document.getElementById("m4_conclusao_etapa").value.trim();
+
+        if (!conclusion) {
+            alert("Escreve primeiro a conclusão desta etapa antes de marcar como feita e guardar.");
+            return;
+        }
+
+        st.expectation = expectation;
+        st.needsToKnow = needsToKnow;
+        st.conclusion = conclusion;
+        st.completed = true;
+
+        const dateStr = new Date().toLocaleDateString("pt-PT", {
+            day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit"
+        });
+
+        state.history.unshift({
+            type: "stage",
+            date: dateStr,
+            stageName: (st.name || "").trim() || `Etapa ${idx + 1}`,
+            expectation,
+            needsToKnow,
+            conclusion
+        });
+
+        if (idx + 1 < state.stages.length) {
+            state.activeStageIndex = idx + 1;
+        }
+
+        saveState();
+        renderStages();
+        renderHistory();
+        alert("Etapa registada como concluída!");
+    });
+
+    document.getElementById("btnSaveCycleLog").addEventListener("click", () => {
+        const expectation = document.getElementById("m4_expectativa_ciclo").value.trim();
+        const conclusion = document.getElementById("m4_conclusao_ciclo").value.trim();
+
+        if (!conclusion) {
+            alert("Escreve a conclusão final do ciclo antes de guardar no histórico.");
+            return;
+        }
+
+        const dateStr = new Date().toLocaleDateString("pt-PT", {
+            day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit"
+        });
+
+        state.history.unshift({
+            type: "cycle",
+            date: dateStr,
+            stageName: "Ciclo Completo",
+            expectation,
+            needsToKnow: "",
+            conclusion
+        });
+
+        saveState();
+        renderHistory();
+        alert("Conclusão final do ciclo guardada no histórico!");
+    });
+
+    document.getElementById("presetSelector").addEventListener("change", (e) => {
+        const key = e.target.value;
+        if (!key || !PRESETS[key]) return;
+        if (confirm("Carregar este exemplo pronto por cima do plano atual?")) {
+            const p = JSON.parse(JSON.stringify(PRESETS[key]));
+            state = {
+                fields: { ...defaultState().fields, ...p.fields },
+                cycle: { ...defaultState().cycle, ...p.cycle },
+                activeStageIndex: p.activeStageIndex || 0,
+                stages: p.stages,
+                history: p.history || []
+            };
+            saveState();
+            applyStateToUI();
+        }
+        e.target.value = "";
+    });
+
+    document.getElementById("btnExport").addEventListener("click", () => {
+        const creatorRaw = (state.fields && state.fields.m1_criador) ? state.fields.m1_criador.trim() : "";
+        const slugCreator = creatorRaw
+            .toLowerCase()
+            .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+        const payload = {
+            ...state,
+            meta: {
+                creator: creatorRaw || "Anónimo",
+                exportedAt: new Date().toISOString(),
+                version: "v4"
+            }
+        };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        const suffixCreator = slugCreator ? `-${slugCreator}` : "";
+        a.download = `meu-plano-de-acao-v4${suffixCreator}-${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    });
+
+    document.getElementById("fileImport").addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            try {
+                const parsed = JSON.parse(ev.target.result);
+                if (parsed && typeof parsed === "object") {
+                    const base = defaultState();
+                    state = {
+                        fields: {
+                            ...base.fields,
+                            ...(parsed.fields || {}),
+                            m1_criador: (parsed.fields && parsed.fields.m1_criador) || (parsed.meta && parsed.meta.creator) || ""
+                        },
+                        cycle: { ...base.cycle, ...(parsed.cycle || {}) },
+                        activeStageIndex: Number(parsed.activeStageIndex) || 0,
+                        stages: Array.isArray(parsed.stages) && parsed.stages.length > 0 ? parsed.stages : base.stages,
+                        history: Array.isArray(parsed.history) ? parsed.history : []
+                    };
+                    saveState();
+                    applyStateToUI();
+                    alert("Plano v4 carregado com sucesso!");
+                }
+            } catch (err) {
+                alert("Ficheiro JSON inválido.");
+            }
+        };
+        reader.readAsText(file);
+        e.target.value = "";
+    });
+
+    document.getElementById("btnPrint").addEventListener("click", () => window.print());
+
+    document.getElementById("btnClear").addEventListener("click", () => {
+        if (confirm("Tens a certeza que queres limpar tudo e começar do zero?")) {
+            state = defaultState();
+            saveState();
+            applyStateToUI();
+        }
+    });
+
+    function init() {
+        populateCurrencies();
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+            try {
+                const parsed = JSON.parse(raw);
+                const base = defaultState();
+                state = {
+                    fields: {
+                            ...base.fields,
+                            ...(parsed.fields || {}),
+                            m1_criador: (parsed.fields && parsed.fields.m1_criador) || (parsed.meta && parsed.meta.creator) || ""
+                        },
+                    cycle: { ...base.cycle, ...(parsed.cycle || {}) },
+                    activeStageIndex: Number(parsed.activeStageIndex) || 0,
+                    stages: Array.isArray(parsed.stages) && parsed.stages.length > 0 ? parsed.stages : base.stages,
+                    history: Array.isArray(parsed.history) ? parsed.history : []
+                };
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        applyStateToUI();
+    }
+
+    init();
+});
+
+    </script>
+</body>
+</html>

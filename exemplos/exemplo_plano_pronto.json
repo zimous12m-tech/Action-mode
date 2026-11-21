@@ -1,0 +1,60 @@
+{
+  "fields": {
+    "m1_onde_estou": "Trabalho fixo e pouco tempo livre, com foco em fechar entregas sem dispersão.",
+    "m1_onde_quero_chegar": "Ter uma música pronta para lançamento no fim deste ciclo.",
+    "m1_porque": "Autodisciplina e consistência.",
+    "m2_eliminar": "Distrações e abrir várias ideias em simultâneo.",
+    "m2_recursos": "Conhecimento de produção, DAW e blocos de tempo livre.",
+    "m4_expectativa_etapa": "Fechar a base harmónica e melódica com clareza.",
+    "m4_preciso_saber": "Definir o clima e a progressão principal.",
+    "m4_conclusao_etapa": "",
+    "m4_expectativa_ciclo": "Concluir o tema até ao ponto de lançamento.",
+    "m4_conclusao_ciclo": ""
+  },
+  "cycle": {
+    "mode": "1m",
+    "customWeeks": 4,
+    "hoursPerSession": 2,
+    "sessionsPerWeek": 4,
+    "evalMode": "progress",
+    "currency": "EUR",
+    "nonMoneyMetric": "marcos e tarefas concluídas",
+    "targetValue": 100
+  },
+  "activeStageIndex": 0,
+  "stages": [
+    {
+      "id": "stg_1",
+      "name": "Etapa 1: Harmonia e Melodia",
+      "weight": 3,
+      "completed": false,
+      "startedAt": "",
+      "finishedAt": "",
+      "actualHours": "",
+      "expectation": "Base harmónica definida.",
+      "needsToKnow": "Tonalidade e ritmo ideal.",
+      "conclusion": "",
+      "tasks": [
+        { "id": "tsk_1", "title": "Criar progressão harmónica", "done": false },
+        { "id": "tsk_2", "title": "Testar melodias principais", "done": false }
+      ]
+    },
+    {
+      "id": "stg_2",
+      "name": "Etapa 2: Arranjo e Mistura",
+      "weight": 4,
+      "completed": false,
+      "startedAt": "",
+      "finishedAt": "",
+      "actualHours": "",
+      "expectation": "Estrutura completa e mistura limpa.",
+      "needsToKnow": "Equilíbrio entre graves, harmonia e voz/leads.",
+      "conclusion": "",
+      "tasks": [
+        { "id": "tsk_3", "title": "Estruturar secções na DAW", "done": false },
+        { "id": "tsk_4", "title": "Equilibrar níveis e frequências", "done": false }
+      ]
+    }
+  ],
+  "history": []
+}
